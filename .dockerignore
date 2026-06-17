@@ -1,0 +1,20 @@
+# Keep the image small and never bake secrets or local state into it.
+.git
+.gitignore
+.venv
+**/__pycache__
+**/*.pyc
+.env
+*.db
+*.db-wal
+*.db-shm
+.planning
+.claude
+tests
+node_modules
+*.md
+!README.md
+Dockerfile
+.dockerignore
+docker-compose.yml
+Caddyfile

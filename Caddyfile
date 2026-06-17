@@ -1,0 +1,9 @@
+# Public entrypoint for the Streamlit app.
+# Streamlit is served under /rag.
+{$DOMAIN} {
+	# Forward the app path.
+	reverse_proxy /rag* frontend:8501
+
+	# Send the bare domain to the app.
+	redir / /rag/ permanent
+}

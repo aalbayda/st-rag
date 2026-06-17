@@ -1,0 +1,14 @@
+{
+  "name": "rag-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Dev runner for the Streamlit RAG Agent. Starts FastAPI and Streamlit together.",
+  "scripts": {
+    "start": "npx --yes concurrently --kill-others-on-fail --names \"api,ui\" --prefix-colors \"blue,green\" \"npm:start:api\" \"npm:start:ui\"",
+    "start:api": "uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8000",
+    "start:ui": "PYTHONPATH=. uv run streamlit run frontend/streamlit_app.py --server.port 8501"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.0"
+  }
+}
