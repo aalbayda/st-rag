@@ -10,4 +10,5 @@ st.set_page_config(
     layout="wide",
 )
 
-render_chat
+# Single page: chat in the main area; sidebar holds Chat History + Manage Documents.
+render_chat()
