@@ -149,7 +149,7 @@ def render_chat() -> None:
                 st.rerun()
 
             try:
-                all_sessions = get_sessions
+                all_sessions = get_sessions()
             except Exception:
                 all_sessions = []
 
@@ -175,7 +175,7 @@ def render_chat() -> None:
 
         st.header("Manage Documents")
         with st.container(border=True, key="pane_manage_docs"):
-            render_documents_section
+            render_documents_section()
 
     has_docs = len(st.session_state.get("files", [])) > 0
 
@@ -202,7 +202,7 @@ def render_chat() -> None:
             with st.spinner("Searching your documents..."):
                 try:
                     if not st.session_state["session_id"]:
-                        st.session_state["session_id"] = post_session["id"]
+                        st.session_state["session_id"] = post_session()["id"]
                     answer = post_chat(prompt, st.session_state["session_id"])
                 except Exception:
                     answer = {

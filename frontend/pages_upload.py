@@ -11,7 +11,7 @@ from frontend.api import delete_file, get_files, post_files
 def _fetch_files_with_retry(attempts: int = 12, delay: float = 0.6) -> tuple[list, bool]:
     for attempt in range(attempts):
         try:
-            return get_files, True
+            return get_files(), True
         except httpx.RequestError:
             if attempt < attempts - 1:
                 time.sleep(delay)
