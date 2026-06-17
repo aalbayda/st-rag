@@ -76,7 +76,7 @@ def render_documents_section() -> None:
 
     if "files" not in st.session_state:
         with st.spinner("Loading documents..."):
-            files, reachable = _fetch_files_with_retry
+            files, reachable = _fetch_files_with_retry()
         if reachable:
             st.session_state.files = files
         else:
@@ -137,6 +137,6 @@ def render_documents_section() -> None:
                 except Exception as exc:
                     st.error(f"Could not refresh file list: {exc}")
 
-    st.divider
+    st.divider()
 
     _render_file_list(st.session_state.get("files", []))
