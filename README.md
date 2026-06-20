@@ -1,4 +1,4 @@
-# RAG + Streamlit
+# "Ask Bob": RAG + Streamlit
 
 Basic scaffolding for RAG over a Streamlit web app. Supports document upload and management via Pinecone, retrieval with hybrid search, and chat session history.
 
