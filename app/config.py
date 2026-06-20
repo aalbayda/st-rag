@@ -28,9 +28,9 @@ class Settings(BaseSettings):
 
     openrouter_title: str | None = None
 
-    gen_model: str = "openai/gpt-5.5"
+    gen_model: str = "openai/gpt-oss-120b:free"
 
-    naming_model: str = "openai/gpt-5.4-nano"
+    naming_model: str = "openai/gpt-oss-120b:free"
 
     embedding_model: str = "openai/text-embedding-3-large"
 

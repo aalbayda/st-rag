@@ -37,7 +37,7 @@ class TestOpenAIClient:
 
     def test_verify_models_returns_all_three_keys(self, monkeypatch):
         fake_model_ids = [
-            "openai/gpt-5.5",
+            "openai/gpt-oss-120b:free",
             "openai/text-embedding-3-large",
         ]
 
@@ -118,7 +118,7 @@ class TestOpenAIClient:
             result = verify_models()
 
         assert result[settings.gen_model] is True
-        assert result[settings.naming_model] is False
+        assert result[settings.naming_model] is True
         assert result[settings.embedding_model] is False
 
     def test_get_openai_client_uses_openrouter_base_url_and_key(self, monkeypatch):

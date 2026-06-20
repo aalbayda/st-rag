@@ -36,11 +36,11 @@ def test_model_id_defaults(monkeypatch):
     cfg_module.get_settings.cache_clear()
 
     settings = cfg_module.Settings()
-    assert settings.gen_model == "openai/gpt-5.5", (
-        f"Expected gen_model='openai/gpt-5.5', got {settings.gen_model!r}"
+    assert settings.gen_model == "openai/gpt-oss-120b:free", (
+        f"Expected gen_model='openai/gpt-oss-120b:free', got {settings.gen_model!r}"
     )
-    assert settings.naming_model == "openai/gpt-5.4-nano", (
-        f"Expected naming_model='openai/gpt-5.4-nano', got {settings.naming_model!r}"
+    assert settings.naming_model == "openai/gpt-oss-120b:free", (
+        f"Expected naming_model='openai/gpt-oss-120b:free', got {settings.naming_model!r}"
     )
     assert settings.embedding_model == "openai/text-embedding-3-large", (
         "Expected embedding_model='openai/text-embedding-3-large', "

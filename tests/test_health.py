@@ -18,8 +18,7 @@ client = TestClient(app, raise_server_exceptions=False)
 
 HEALTHY_PING = {"reachable": True, "dimension": 3072, "metric": "dotproduct"}
 HEALTHY_MODELS = {
-    "openai/gpt-5.5": True,
-    "openai/gpt-5.4-nano": True,
+    "openai/gpt-oss-120b:free": True,
     "openai/text-embedding-3-large": True,
 }
 
@@ -56,7 +55,7 @@ def test_health_all_healthy_status_ok():
     assert body["status"] == "ok"
 
 
-def test_health_all_healthy_openrouter_has_all_three_model_keys():
+def test_health_all_healthy_openrouter_has_all_model_keys():
     with (
         patch("app.routers.health.ping_index", return_value=HEALTHY_PING),
         patch("app.routers.health.verify_models", return_value=HEALTHY_MODELS),
@@ -64,8 +63,7 @@ def test_health_all_healthy_openrouter_has_all_three_model_keys():
     ):
         response = client.get("/health")
     openrouter_sub = response.json()["openrouter"]
-    assert "openai/gpt-5.5" in openrouter_sub
-    assert "openai/gpt-5.4-nano" in openrouter_sub
+    assert "openai/gpt-oss-120b:free" in openrouter_sub
     assert "openai/text-embedding-3-large" in openrouter_sub
 
 
@@ -146,8 +144,7 @@ def test_health_pinecone_raises_no_traceback_in_body():
 
 def test_health_openrouter_missing_model_status_not_ok():
     partial_models = {
-        "openai/gpt-5.5": False,
-        "openai/gpt-5.4-nano": True,
+        "openai/gpt-oss-120b:free": False,
         "openai/text-embedding-3-large": True,
     }
     with (
@@ -158,7 +155,7 @@ def test_health_openrouter_missing_model_status_not_ok():
         response = client.get("/health")
     body = response.json()
     assert body["status"] != "ok"
-    assert body["openrouter"]["openai/gpt-5.5"] is False
+    assert body["openrouter"]["openai/gpt-oss-120b:free"] is False
 
 
 def test_health_db_raises_status_not_ok():
